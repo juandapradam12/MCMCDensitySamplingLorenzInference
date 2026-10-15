@@ -1,7 +1,7 @@
 PYTHON ?= python3
 PIP    ?= $(PYTHON) -m pip
 
-.PHONY: install test sample-normal infer-lorenz c-sampler clean figures all
+.PHONY: install test sample-normal infer-lorenz sample-normal-c c-sampler clean figures all
 
 install:
 	$(PIP) install -e ".[dev]"
@@ -15,12 +15,15 @@ sample-normal:
 infer-lorenz:
 	$(PYTHON) -m mcmc_lab infer-lorenz
 
+sample-normal-c: c-sampler
+	$(PYTHON) -m mcmc_lab sample-normal-c 2000 4
+
 c-sampler:
 	$(MAKE) -C c_sampler all
 
 figures: sample-normal infer-lorenz
 
-all: install test c-sampler figures
+all: install c-sampler test figures
 
 clean:
 	$(MAKE) -C c_sampler clean

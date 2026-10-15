@@ -26,8 +26,9 @@ Each chain advances sequentially. Parallelism is applied across independent chai
 | --- | --- |
 | `metropolis.py` | Generic random-walk Metropolis-Hastings |
 | `lorenz.py` | Lorenz-63 ODE, observation loader, log-posterior factory |
-| `diagnostics.py` | R-hat, pooled posterior, summary statistics |
+| `diagnostics.py` | R-hat, ESS, pooled posterior, summary statistics |
 | `plotting.py` | Figures for sampler validation and inference |
+| `c_backend.py` | Optional ctypes bridge to `libmetropolis.so` |
 | `cli.py` | Reproducible experiment entry points |
 
 ### Reproducibility

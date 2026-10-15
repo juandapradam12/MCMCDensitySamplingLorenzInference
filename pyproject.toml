@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mcmc-lab"
-version = "1.0.0"
+version = "1.1.0"
 description = "Metropolis-Hastings MCMC for distribution sampling and Lorenz parameter inference"
 readme = "README.md"
 requires-python = ">=3.10"

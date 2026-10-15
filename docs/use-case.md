@@ -14,7 +14,7 @@ Dynamical systems with chaotic sensitivity make point estimates brittle. A Bayes
 2. **Forward model** — integrate Lorenz-63 with candidate parameters from the observed initial state.
 3. **Likelihood** — Gaussian residual model between simulated and observed states.
 4. **Prior** — independent box constraints on each parameter.
-5. **Inference** — multi-chain Metropolis-Hastings; report posterior means, credible intervals, traces, and predictive trajectory overlays.
+5. **Inference** — multi-chain Metropolis-Hastings; report posterior means, credible intervals, \(\hat{R}\), ESS, traces, and predictive trajectory overlays.
 
 ## Scope
 

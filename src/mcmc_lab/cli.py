@@ -7,7 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
-from mcmc_lab.diagnostics import gelman_rubin, pooled_posterior
+from mcmc_lab.diagnostics import effective_sample_size, gelman_rubin, pooled_posterior
 from mcmc_lab.lorenz import load_observations, make_lorenz_log_posterior
 from mcmc_lab.metropolis import MetropolisHastings
 from mcmc_lab.plotting import plot_lorenz_inference, plot_normal_sampling
@@ -49,9 +49,11 @@ def sample_normal_main(argv: list[str] | None = None) -> int:
     rhat = gelman_rubin(chains)
     pooled = pooled_posterior(chains)
 
+    ess = effective_sample_size(chains)
     print(f"chains           : {args.n_chains}")
     print(f"acceptance rates : {[round(c.acceptance_rate, 3) for c in chains]}")
     print(f"R-hat            : {rhat.round(4)}")
+    print(f"ESS              : {ess.round(1)}")
     print(f"posterior mean   : {pooled.mean(axis=0).round(4)}")
     print(f"figure           : {path}")
     return 0
@@ -106,6 +108,7 @@ def infer_lorenz_main(argv: list[str] | None = None) -> int:
 
     pooled = pooled_posterior(chains)
     rhat = gelman_rubin(chains)
+    ess = effective_sample_size(chains)
     paths = plot_lorenz_inference(
         chains, times, observations, output_prefix=args.output_prefix
     )
@@ -114,6 +117,7 @@ def infer_lorenz_main(argv: list[str] | None = None) -> int:
     print("Lorenz-63 parameter inference")
     print(f"acceptance rates : {[round(c.acceptance_rate, 3) for c in chains]}")
     print(f"R-hat            : {dict(zip(labels, np.round(rhat, 4)))}")
+    print(f"ESS              : {dict(zip(labels, np.round(ess, 1)))}")
     print(f"posterior mean   : {dict(zip(labels, np.round(pooled.mean(axis=0), 4)))}")
     print(
         "95% CI           : "
