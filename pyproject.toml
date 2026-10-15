@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcmc-lab"
+version = "1.0.0"
+description = "Metropolis-Hastings MCMC for distribution sampling and Lorenz parameter inference"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Juan David Prada Malagon", email = "pradamalagonjd@gmail.com" },
+]
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+mcmc-sample-normal = "mcmc_lab.cli:sample_normal_main"
+mcmc-infer-lorenz = "mcmc_lab.cli:infer_lorenz_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

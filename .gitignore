@@ -1,0 +1,33 @@
+# Build artifacts
+*.o
+*.so
+*.a
+c_sampler/bin/
+c_sampler/sample_*.dat
+sample_*.dat
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+
+# Outputs and notebooks checkpoints
+outputs/*
+!outputs/.gitkeep
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
