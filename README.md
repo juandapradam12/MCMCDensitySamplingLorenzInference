@@ -78,6 +78,3 @@ Primary inference data: short synthetic Lorenz-63 path with known truth \((10,\ 
 
 Python 3.10+ · NumPy · SciPy · Matplotlib · pytest · GCC (optional OpenMP) · GitHub Actions
 
-## License
-
-MIT — Juan David Prada Malagon

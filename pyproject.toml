@@ -8,7 +8,6 @@ version = "1.1.0"
 description = "Metropolis-Hastings MCMC for distribution sampling and Lorenz parameter inference"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
 authors = [
   { name = "Juan David Prada Malagon", email = "pradamalagonjd@gmail.com" },
 ]
