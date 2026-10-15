@@ -5,12 +5,13 @@ The project is split into a Python inference package and a small C sampler used 
 ## Layout
 
 ```text
-src/mcmc_lab/     Python library (sampler, Lorenz model, diagnostics, plots, CLI)
-c_sampler/        OpenMP-capable C implementation of multi-chain Normal sampling
-data/             Observational Lorenz trajectory
+src/mcmc_lab/     Python library (sampler, Lorenz model, diagnostics, C bridge, plots, CLI)
+c_sampler/        C library + CLI for Normal-target MH (independent chains)
+data/             Synthetic primary trajectory + legacy observational file
 examples/         Thin wrappers around the CLI entry points
 tests/            Unit and smoke tests
-docs/             Use-case and architecture notes
+docs/             Use-case, architecture, results, figures
+.github/          CI workflow
 outputs/          Generated figures (ignored by git except .gitkeep)
 ```
 

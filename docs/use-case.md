@@ -6,7 +6,7 @@ Given a short trajectory \((t, x, y, z)\) generated from Lorenz-63 with known pa
 
 ## Why this matters
 
-Dynamical systems with chaotic sensitivity make point estimates brittle. A Bayesian MCMC workflow returns posterior uncertainty, acceptance diagnostics, and multi-chain convergence checks (Gelman-Rubin \(\hat{R}\)), which are the quantities a practitioner needs to decide whether the fit is usable.
+Dynamical systems with chaotic sensitivity make point estimates brittle. A Bayesian MCMC workflow returns posterior uncertainty, acceptance diagnostics, multi-chain convergence checks (Gelman-Rubin \(\hat{R}\)), and effective sample size (ESS)—the quantities a practitioner needs to decide whether the fit is usable.
 
 ## Approach
 
