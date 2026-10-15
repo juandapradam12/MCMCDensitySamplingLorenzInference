@@ -1,19 +1,40 @@
-# MCMC Lab — Bayesian Inference for the Lorenz System
+# Metropolis-Hastings MCMC: Density Sampling & Lorenz Inference
 
-Portfolio case study in computational statistics: Metropolis-Hastings MCMC for (1) sampling a known density and (2) inferring Lorenz-63 parameters from a noisy trajectory.
+A given trajectory is noisy. The dynamical system behind it is chaotic. Point estimates alone are not enough — you need parameters **and** uncertainty.
 
-Originally academic coursework; reworked into a small, reproducible research codebase with clean module boundaries, diagnostics, tests, and CI.
+This repository is a compact computational-statistics case study built around that problem. It starts by proving a Metropolis-Hastings sampler on a known target, then uses the same engine to recover Lorenz-63 parameters \((\sigma, \rho, \beta)\) from a short observed path.
 
-> **Suggested GitHub rename:** `mcmc-lorenz-inference` (current remote name still reflects the original exam repo). Suggested topics: `mcmc`, `bayesian-inference`, `lorenz`, `python`, `scientific-computing`.
+<p align="center">
+  <img src="docs/figures/normal_sampling.png" width="48%" alt="Multi-chain Metropolis-Hastings sampling of N(0,1) versus the analytical density" />
+  <img src="docs/figures/lorenz_fit.png" width="48%" alt="Lorenz-63 trajectory fit using the posterior mean" />
+</p>
+<p align="center">
+  <em>Left:</em> sampler validation on \(N(0,1)\).
+  &nbsp;&nbsp;
+  <em>Right:</em> Lorenz trajectory reconstructed from the posterior mean.
+</p>
 
-## What this shows
+<p align="center">
+  <img src="docs/figures/lorenz_traces.png" width="48%" alt="MCMC parameter traces for sigma, rho, and beta" />
+  <img src="docs/figures/lorenz_marginals.png" width="48%" alt="Posterior marginals for Lorenz parameters" />
+</p>
+<p align="center">
+  <em>Left:</em> parameter traces across chains.
+  &nbsp;&nbsp;
+  <em>Right:</em> posterior marginals for \((\sigma, \rho, \beta)\).
+</p>
 
-| Use case | Question | Output |
-| --- | --- | --- |
-| Sampler validation | Can MH recover \(N(0,1)\)? | Multi-chain histograms vs analytical density |
-| Parameter inference | What \((\sigma, \rho, \beta)\) explain the observed path? | Posterior summaries, traces, predictive fit |
+## What is inside
 
-Supporting pieces: Gelman-Rubin \(\hat{R}\), effective sample size (ESS), acceptance rates, a C/`ctypes` multi-chain Normal sampler, and pytest + GitHub Actions CI.
+| Piece | Role |
+| --- | --- |
+| Sampler validation | Multi-chain MH recovers \(N(0,1)\); histograms vs analytical density |
+| Lorenz inference | Bayesian recovery of \((\sigma, \rho, \beta)\) from noisy states |
+| Diagnostics | Acceptance rate, Gelman-Rubin \(\hat{R}\), effective sample size (ESS) |
+| C backend | Optional OpenMP-ready multi-chain Normal sampler via `ctypes` |
+| Engineering | Packaged Python module, pytest suite, GitHub Actions CI |
+
+Numerical summaries for the default seeds live in [docs/results.md](docs/results.md). Design notes: [docs/use-case.md](docs/use-case.md), [docs/architecture.md](docs/architecture.md).
 
 ## Project structure
 
@@ -23,12 +44,10 @@ c_sampler/      C library + CLI for Normal-target MH (independent chains)
 data/           synthetic + legacy observational trajectories
 examples/       runnable entry points
 tests/          pytest suite
-docs/           use-case, architecture, results snapshot
+docs/           use-case, architecture, results, figures
 .github/        CI workflow
 outputs/        generated figures
 ```
-
-See [docs/use-case.md](docs/use-case.md), [docs/architecture.md](docs/architecture.md), and [docs/results.md](docs/results.md).
 
 ## Setup
 
@@ -46,15 +65,6 @@ python -m mcmc_lab sample-normal
 python -m mcmc_lab infer-lorenz
 python -m mcmc_lab sample-normal-c 2000 4   # requires make c-sampler
 ```
-
-Figures land under `outputs/`. Checked-in examples:
-
-<p align="center">
-  <img src="docs/figures/normal_sampling.png" width="420" alt="Normal sampling validation" />
-  <img src="docs/figures/lorenz_fit.png" width="420" alt="Lorenz trajectory fit" />
-</p>
-
-Default-seed numerical summaries are recorded in [docs/results.md](docs/results.md).
 
 ## Method (short)
 
