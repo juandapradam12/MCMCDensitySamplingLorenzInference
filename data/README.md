@@ -4,9 +4,9 @@
 
 Primary dataset for the inference use case: a short synthetic Lorenz-63 trajectory with additive Gaussian noise and known ground-truth parameters
 
-\[
-(\sigma, \rho, \beta) = (10,\ 28,\ 8/3).
-\]
+$$
+(\sigma, \rho, \beta) = (10, 28, 8/3).
+$$
 
 Columns:
 
